@@ -9,6 +9,8 @@ public class MainActivity extends AppCompatActivity implements FileDownloader.Fi
 
     private TextView mStatus;
 
+    private View start;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,21 +23,33 @@ public class MainActivity extends AppCompatActivity implements FileDownloader.Fi
     }
 
     public void start(View view) {
+        start = view;
+        view.setEnabled(false);
         FileDownloader.getInstance(this).setLoaderListener(this);
         FileDownloader.start(this, "http://**/upload/apk/CSH_v3.6.0.apk");
     }
 
     public void cancel(View view) {
+        start.setEnabled(true);
+        FileDownloader.cancel(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        start.setEnabled(true);
         FileDownloader.cancel(this);
     }
 
     @Override
     public void onDownLoadComplete() {
+        start.setEnabled(true);
         mStatus.setText("download complete");
     }
 
     @Override
     public void onDownLoadError() {
+        start.setEnabled(true);
         mStatus.setText("download error,please try again");
     }
 
