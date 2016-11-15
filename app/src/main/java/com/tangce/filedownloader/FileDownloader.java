@@ -110,6 +110,7 @@ public class FileDownloader {
 
     private void cancel() {
         mDownloader.cancel(true);
+
     }
 
     private class DownLoader extends AsyncTask<String, Float, Boolean> {
