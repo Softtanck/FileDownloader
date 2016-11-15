@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements FileDownloader.Fi
         start = view;
         view.setEnabled(false);
         FileDownloader.getInstance(this).setLoaderListener(this);
-        FileDownloader.start(this, "http://**/upload/apk/CSH_v3.6.0.apk");
+        FileDownloader.start(this, "http://carlife.chcws.com:8080/upload/apk/CSH_v3.6.0.apk");
     }
 
     public void cancel(View view) {
